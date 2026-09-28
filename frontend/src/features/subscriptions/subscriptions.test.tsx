@@ -202,3 +202,41 @@ it('says when the subscription does not exist', async () => {
   expect(await screen.findByText('This subscription does not exist')).toBeInTheDocument()
   expect(screen.getByRole('link', { name: 'Back to the list' })).toHaveAttribute('href', '/subscriptions')
 })
+
+it('treats an id too large to be real as a missing subscription', async () => {
+  server.use(loggedIn(), ...lookups())
+  renderApp('/subscriptions/99999999999999999999')
+  expect(await screen.findByText('This subscription does not exist')).toBeInTheDocument()
+})
+
+it('does not stay loading forever when the server fails', async () => {
+  server.use(
+    loggedIn(),
+    ...lookups(),
+    http.get('/api/subscriptions/1', () => new HttpResponse(null, { status: 500 })),
+  )
+  renderApp('/subscriptions/1')
+  expect(await screen.findByRole('link', { name: 'Back to the list' })).toBeInTheDocument()
+  expect(screen.queryByText('Loading…')).not.toBeInTheDocument()
+})
+
+it('warns when a save fails without field errors', async () => {
+  server.use(
+    loggedIn(),
+    ...lookups(),
+    http.post('/api/subscriptions', () =>
+      HttpResponse.json(
+        { status: 400, title: 'Malformed request' },
+        { status: 400, headers: { 'Content-Type': 'application/problem+json' } },
+      ),
+    ),
+  )
+  const { user } = renderApp('/subscriptions/new')
+
+  await user.type(await screen.findByLabelText('Name'), 'Netflix')
+  await user.type(screen.getByLabelText('Total price (€)'), '15.99')
+  expect(screen.queryByText('Something went wrong')).not.toBeInTheDocument()
+  await user.click(screen.getByRole('button', { name: 'Save' }))
+
+  expect(await screen.findByText('Something went wrong')).toBeInTheDocument()
+})

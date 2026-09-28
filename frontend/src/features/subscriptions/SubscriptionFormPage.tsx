@@ -80,23 +80,31 @@ export function SubscriptionFormPage() {
   const { id: idParam } = useParams()
   if (idParam === undefined) return <SubscriptionForm id={null} initial={emptyForm()} />
   const id = Number(idParam)
-  if (!Number.isInteger(id)) return <NotFound />
+  if (!Number.isSafeInteger(id)) return <NotFound />
   return <EditSubscription key={id} id={id} />
 }
 
 function EditSubscription({ id }: { id: number }) {
   const { t } = useTranslation()
   const subscription = useSubscription(id)
-  if (subscription.error instanceof ApiError && subscription.error.status === 404) return <NotFound />
+  const { error } = subscription
+  // 400: the id is not a valid one (e.g. too large); for the user that is the same as "does not exist"
+  if (error instanceof ApiError && (error.status === 404 || error.status === 400)) return <NotFound />
+  if (subscription.isError) return <BackToList message={t('errors.generic')} />
   if (!subscription.data) return <p className="text-muted-foreground">{t('common.loading')}</p>
   return <SubscriptionForm id={id} initial={toFormState(subscription.data)} />
 }
 
 function NotFound() {
   const { t } = useTranslation()
+  return <BackToList message={t('subscriptions.notFound')} />
+}
+
+function BackToList({ message }: { message: string }) {
+  const { t } = useTranslation()
   return (
     <div className="space-y-2">
-      <p>{t('subscriptions.notFound')}</p>
+      <p>{message}</p>
       <Link to="/subscriptions" className="font-medium underline underline-offset-4">
         {t('subscriptions.backToList')}
       </Link>

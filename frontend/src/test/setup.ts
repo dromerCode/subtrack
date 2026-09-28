@@ -1,5 +1,6 @@
 import '@testing-library/jest-dom/vitest'
 import { cleanup } from '@testing-library/react'
+import { toast } from 'sonner'
 import { afterAll, afterEach, beforeAll, beforeEach } from 'vitest'
 import i18n from '@/i18n'
 import { server } from './server'
@@ -32,6 +33,8 @@ beforeEach(async () => {
 })
 
 afterEach(() => {
+  // sonner keeps toasts in module state; without this they show up in the next test
+  toast.dismiss()
   server.resetHandlers()
   cleanup()
   localStorage.clear()
