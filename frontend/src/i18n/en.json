@@ -1,0 +1,110 @@
+{
+  "nav": {
+    "dashboard": "Dashboard",
+    "subscriptions": "Subscriptions",
+    "settings": "Settings",
+    "logout": "Log out",
+    "switchLanguage": "Español"
+  },
+  "login": {
+    "title": "Sign in",
+    "username": "Username",
+    "password": "Password",
+    "submit": "Sign in",
+    "invalid": "Wrong username or password"
+  },
+  "dashboard": {
+    "title": "Dashboard",
+    "monthly": "Monthly spend",
+    "yearly": "Yearly spend",
+    "upcoming": "Upcoming charges (30 days)",
+    "noUpcoming": "No charges in the next 30 days",
+    "byCategory": "Monthly spend by category",
+    "uncategorized": "Uncategorized",
+    "empty": "No active subscriptions yet",
+    "addFirst": "Add the first one"
+  },
+  "subscriptions": {
+    "title": "Subscriptions",
+    "new": "New subscription",
+    "edit": "Edit subscription",
+    "empty": "No subscriptions yet",
+    "addFirst": "Add the first one",
+    "name": "Name",
+    "category": "Category",
+    "yourShare": "Your share",
+    "sharedTotal": "total {{total}} ÷ {{count}}",
+    "period": "Billing",
+    "nextCharge": "Next charge",
+    "status": "Status",
+    "active": "Active",
+    "cancelled": "Cancelled",
+    "notFound": "This subscription does not exist",
+    "backToList": "Back to the list"
+  },
+  "form": {
+    "name": "Name",
+    "price": "Total price (€)",
+    "intervalCount": "Every",
+    "intervalUnit": "Unit",
+    "anchorDate": "A known charge date",
+    "sharedWith": "Shared between (people)",
+    "category": "Category",
+    "paymentMethod": "Payment method",
+    "none": "None",
+    "notes": "Notes",
+    "active": "Active",
+    "deleteTitle": "Delete this subscription?",
+    "deleteBody": "This cannot be undone."
+  },
+  "units": {
+    "DAY": "days",
+    "WEEK": "weeks",
+    "MONTH": "months",
+    "YEAR": "years"
+  },
+  "period": {
+    "DAY_one": "every day",
+    "DAY_other": "every {{count}} days",
+    "WEEK_one": "every week",
+    "WEEK_other": "every {{count}} weeks",
+    "MONTH_one": "every month",
+    "MONTH_other": "every {{count}} months",
+    "YEAR_one": "every year",
+    "YEAR_other": "every {{count}} years"
+  },
+  "settings": {
+    "title": "Settings",
+    "categories": "Categories",
+    "paymentMethods": "Payment methods",
+    "newName": "New name",
+    "add": "Add",
+    "rename": "Rename",
+    "empty": "Nothing here yet — add the first one above",
+    "deleteTitle": "Delete “{{name}}”?",
+    "deleteCategoryBody": "Subscriptions using it will be left without a category.",
+    "deletePaymentMethodBody": "Subscriptions using it will be left without a payment method."
+  },
+  "fieldErrors": {
+    "notBlank": "Required",
+    "notNull": "Required",
+    "size": "Too long",
+    "positive": "Must be greater than 0",
+    "digits": "At most 2 decimals",
+    "min": "Must be at least 1",
+    "max": "Too large",
+    "notFound": "No longer exists",
+    "duplicate": "That name already exists",
+    "invalid": "Invalid value"
+  },
+  "errors": {
+    "generic": "Something went wrong",
+    "reload": "Reload"
+  },
+  "common": {
+    "loading": "Loading…",
+    "save": "Save",
+    "cancel": "Cancel",
+    "delete": "Delete"
+  }
+}

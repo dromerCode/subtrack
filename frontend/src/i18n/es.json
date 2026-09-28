@@ -1,0 +1,110 @@
+{
+  "nav": {
+    "dashboard": "Panel",
+    "subscriptions": "Suscripciones",
+    "settings": "Ajustes",
+    "logout": "Salir",
+    "switchLanguage": "English"
+  },
+  "login": {
+    "title": "Iniciar sesión",
+    "username": "Usuario",
+    "password": "Contraseña",
+    "submit": "Entrar",
+    "invalid": "Usuario o contraseña incorrectos"
+  },
+  "dashboard": {
+    "title": "Panel",
+    "monthly": "Gasto mensual",
+    "yearly": "Gasto anual",
+    "upcoming": "Próximos cobros (30 días)",
+    "noUpcoming": "No hay cobros en los próximos 30 días",
+    "byCategory": "Gasto mensual por categoría",
+    "uncategorized": "Sin categoría",
+    "empty": "Aún no hay suscripciones activas",
+    "addFirst": "Añadir la primera"
+  },
+  "subscriptions": {
+    "title": "Suscripciones",
+    "new": "Nueva suscripción",
+    "edit": "Editar suscripción",
+    "empty": "Aún no hay suscripciones",
+    "addFirst": "Añadir la primera",
+    "name": "Nombre",
+    "category": "Categoría",
+    "yourShare": "Tu parte",
+    "sharedTotal": "total {{total}} ÷ {{count}}",
+    "period": "Periodicidad",
+    "nextCharge": "Próximo cobro",
+    "status": "Estado",
+    "active": "Activa",
+    "cancelled": "Cancelada",
+    "notFound": "Esta suscripción no existe",
+    "backToList": "Volver a la lista"
+  },
+  "form": {
+    "name": "Nombre",
+    "price": "Precio total (€)",
+    "intervalCount": "Cada",
+    "intervalUnit": "Unidad",
+    "anchorDate": "Una fecha de cobro conocida",
+    "sharedWith": "Compartida entre (personas)",
+    "category": "Categoría",
+    "paymentMethod": "Método de pago",
+    "none": "Ninguno",
+    "notes": "Notas",
+    "active": "Activa",
+    "deleteTitle": "¿Borrar esta suscripción?",
+    "deleteBody": "No se puede deshacer."
+  },
+  "units": {
+    "DAY": "días",
+    "WEEK": "semanas",
+    "MONTH": "meses",
+    "YEAR": "años"
+  },
+  "period": {
+    "DAY_one": "cada día",
+    "DAY_other": "cada {{count}} días",
+    "WEEK_one": "cada semana",
+    "WEEK_other": "cada {{count}} semanas",
+    "MONTH_one": "cada mes",
+    "MONTH_other": "cada {{count}} meses",
+    "YEAR_one": "cada año",
+    "YEAR_other": "cada {{count}} años"
+  },
+  "settings": {
+    "title": "Ajustes",
+    "categories": "Categorías",
+    "paymentMethods": "Métodos de pago",
+    "newName": "Nombre nuevo",
+    "add": "Añadir",
+    "rename": "Renombrar",
+    "empty": "Aún no hay ninguno: añade el primero arriba",
+    "deleteTitle": "¿Borrar «{{name}}»?",
+    "deleteCategoryBody": "Las suscripciones que la usan se quedarán sin categoría.",
+    "deletePaymentMethodBody": "Las suscripciones que lo usan se quedarán sin método de pago."
+  },
+  "fieldErrors": {
+    "notBlank": "Obligatorio",
+    "notNull": "Obligatorio",
+    "size": "Demasiado largo",
+    "positive": "Tiene que ser mayor que 0",
+    "digits": "Como mucho 2 decimales",
+    "min": "Tiene que ser al menos 1",
+    "max": "Demasiado grande",
+    "notFound": "Ya no existe",
+    "duplicate": "Ya existe ese nombre",
+    "invalid": "Valor no válido"
+  },
+  "errors": {
+    "generic": "Algo ha fallado",
+    "reload": "Recargar"
+  },
+  "common": {
+    "loading": "Cargando…",
+    "save": "Guardar",
+    "cancel": "Cancelar",
+    "delete": "Borrar"
+  }
+}
