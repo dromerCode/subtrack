@@ -137,7 +137,7 @@ Salida: esos campos, con `category` y `paymentMethod` como `{ id, name }` o `nul
 | :--- | :--- |
 | `name` (suscripción) | Obligatorio, 1–100 caracteres |
 | `price` | Obligatorio, > 0, máx. 2 decimales, cabe en `numeric(10,2)` |
-| `intervalCount` | Obligatorio, ≥ 1 |
+| `intervalCount` | Obligatorio, 1–1000 (el tope evita fechas fuera de rango → 500) |
 | `intervalUnit` | Obligatorio |
 | `anchorDate` | Obligatoria |
 | `sharedWith` | Obligatorio, ≥ 1 |
