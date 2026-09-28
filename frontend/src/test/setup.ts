@@ -4,6 +4,19 @@ import { afterAll, afterEach, beforeAll, beforeEach } from 'vitest'
 import i18n from '@/i18n'
 import { server } from './server'
 
+// jsdom has no matchMedia; sonner's Toaster reads it to follow the system theme.
+window.matchMedia ??= (query: string) =>
+  ({
+    matches: false,
+    media: query,
+    onchange: null,
+    addListener: () => {},
+    removeListener: () => {},
+    addEventListener: () => {},
+    removeEventListener: () => {},
+    dispatchEvent: () => false,
+  }) as MediaQueryList
+
 beforeAll(() => server.listen({ onUnhandledRequest: 'error' }))
 
 beforeEach(async () => {
