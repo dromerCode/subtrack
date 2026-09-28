@@ -17,6 +17,13 @@ window.matchMedia ??= (query: string) =>
     dispatchEvent: () => false,
   }) as MediaQueryList
 
+// jsdom has no ResizeObserver; Radix's Switch measures itself with it inside forms.
+globalThis.ResizeObserver ??= class {
+  observe() {}
+  unobserve() {}
+  disconnect() {}
+}
+
 beforeAll(() => server.listen({ onUnhandledRequest: 'error' }))
 
 beforeEach(async () => {
