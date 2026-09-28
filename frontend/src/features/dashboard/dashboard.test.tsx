@@ -2,7 +2,7 @@ import { screen, within } from '@testing-library/react'
 import { http, HttpResponse } from 'msw'
 import { expect, it } from 'vitest'
 import type { Dashboard } from '@/lib/types'
-import { loggedIn, renderApp } from '@/test/render'
+import { emptyDashboard, loggedIn, renderApp } from '@/test/render'
 import { server } from '@/test/server'
 
 const dashboard: Dashboard = {
@@ -18,12 +18,28 @@ const dashboard: Dashboard = {
   ],
 }
 
-it('shows totals, upcoming charges and spend by category', async () => {
-  server.use(loggedIn(), http.get('/api/dashboard', () => HttpResponse.json(dashboard)))
+// Only the fields the dashboard reads from the list: which subscriptions are active and their category.
+const subscriptions = [
+  { id: 1, active: true, category: { id: 5, name: 'Streaming' } },
+  { id: 3, active: true, category: null },
+  { id: 4, active: false, category: null },
+]
+
+it('shows totals, the next charge, upcoming charges and spend by category', async () => {
+  server.use(
+    loggedIn(),
+    http.get('/api/dashboard', () => HttpResponse.json(dashboard)),
+    http.get('/api/subscriptions', () => HttpResponse.json(subscriptions)),
+  )
   renderApp('/')
 
   expect(await screen.findByText('€36.17')).toBeInTheDocument()
   expect(screen.getByText('€434.00')).toBeInTheDocument()
+  expect(await screen.findByText('2 active subscriptions')).toBeInTheDocument()
+
+  const next = screen.getByRole('region', { name: 'Next charge' })
+  expect(next).toHaveTextContent('Netflix')
+  expect(next).toHaveTextContent('€15.00')
 
   const upcoming = screen.getByRole('region', { name: 'Upcoming charges (30 days)' })
   const charges = within(upcoming).getAllByRole('listitem')
@@ -36,26 +52,24 @@ it('shows totals, upcoming charges and spend by category', async () => {
   const categories = within(byCategory).getAllByRole('listitem')
   expect(categories[0]).toHaveTextContent('Uncategorized')
   expect(categories[0]).toHaveTextContent('€21.17')
-  expect(within(categories[0]).getByTestId('bar')).toHaveStyle({ width: '100%' })
+  expect(categories[0]).toHaveTextContent('59%')
   expect(categories[1]).toHaveTextContent('Streaming')
+  expect(categories[1]).toHaveTextContent('41%')
 })
 
 it('says when nothing is due in the next 30 days', async () => {
   server.use(
     loggedIn(),
+    // handlers listed first win
     http.get('/api/dashboard', () => HttpResponse.json({ ...dashboard, upcoming: [] })),
+    ...emptyDashboard(),
   )
   renderApp('/')
   expect(await screen.findByText('No charges in the next 30 days')).toBeInTheDocument()
 })
 
 it('invites to add the first subscription when there are none', async () => {
-  server.use(
-    loggedIn(),
-    http.get('/api/dashboard', () =>
-      HttpResponse.json({ monthlyTotal: 0, yearlyTotal: 0, upcoming: [], byCategory: [] }),
-    ),
-  )
+  server.use(loggedIn(), ...emptyDashboard())
   renderApp('/')
   expect(await screen.findByText('No active subscriptions yet')).toBeInTheDocument()
   expect(screen.getByRole('link', { name: 'Add the first one' })).toHaveAttribute('href', '/subscriptions/new')

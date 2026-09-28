@@ -4,7 +4,9 @@
     "subscriptions": "Suscripciones",
     "settings": "Ajustes",
     "logout": "Salir",
-    "switchLanguage": "English"
+    "switchLanguage": "English",
+    "darkMode": "Cambiar a modo oscuro",
+    "lightMode": "Cambiar a modo claro"
   },
   "login": {
     "title": "Iniciar sesión",
@@ -15,14 +17,17 @@
   },
   "dashboard": {
     "title": "Panel",
-    "monthly": "Gasto mensual",
-    "yearly": "Gasto anual",
     "upcoming": "Próximos cobros (30 días)",
     "noUpcoming": "No hay cobros en los próximos 30 días",
     "byCategory": "Gasto mensual por categoría",
     "uncategorized": "Sin categoría",
     "empty": "Aún no hay suscripciones activas",
-    "addFirst": "Añadir la primera"
+    "addFirst": "Añadir la primera",
+    "perMonth": "al mes",
+    "perYear": "al año",
+    "activeCount_one": "{{count}} suscripción activa",
+    "activeCount_other": "{{count}} suscripciones activas",
+    "nextCharge": "Próximo cobro"
   },
   "subscriptions": {
     "title": "Suscripciones",
@@ -55,7 +60,10 @@
     "notes": "Notas",
     "active": "Activa",
     "deleteTitle": "¿Borrar esta suscripción?",
-    "deleteBody": "No se puede deshacer."
+    "deleteBody": "No se puede deshacer.",
+    "groupCost": "Coste",
+    "groupBilling": "Periodicidad",
+    "groupDetails": "Detalles"
   },
   "units": {
     "DAY": "días",

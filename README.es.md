@@ -14,10 +14,12 @@ App web autoalojada para controlar tus suscripciones: cuánto gastas al mes y al
 - Suscripciones compartidas: pones el precio total y entre cuántas personas se paga, y los totales solo cuentan tu parte.
 - Panel con el gasto mensual y anual, los cobros de los próximos 30 días y el gasto por categoría.
 - Categorías y métodos de pago editables.
-- Interfaz en español e inglés.
+- Interfaz en español e inglés, con tema claro y oscuro (sigue al sistema y tiene un botón para cambiarlo).
 - Una sola cuenta con login por sesión; funciona como una única imagen Docker junto a PostgreSQL.
 
 ![Suscripciones](docs/screenshots/subscriptions.png)
+
+![Panel en modo oscuro](docs/screenshots/dashboard-dark.png)
 
 ## Stack
 

@@ -1,17 +1,14 @@
 import { screen } from '@testing-library/react'
 import { http, HttpResponse } from 'msw'
 import { expect, it } from 'vitest'
-import { loggedIn, loggedOut, renderApp } from '@/test/render'
+import { emptyDashboard, loggedIn, loggedOut, renderApp } from '@/test/render'
 import { server } from '@/test/server'
 
 /** A fake backend session: login flips it on, logout clears it and the CSRF cookie, like Spring does. */
-const emptyDashboard = () =>
-  http.get('/api/dashboard', () => HttpResponse.json({ monthlyTotal: 0, yearlyTotal: 0, upcoming: [], byCategory: [] }))
-
 function sessionHandlers() {
   let session = false
   return [
-    emptyDashboard(),
+    ...emptyDashboard(),
     http.get('/api/auth/me', () => {
       if (!document.cookie.includes('XSRF-TOKEN=')) document.cookie = 'XSRF-TOKEN=new-token; path=/'
       return session ? HttpResponse.json({ username: 'picha' }) : new HttpResponse(null, { status: 401 })
@@ -73,7 +70,7 @@ it('can log out and log back in without reloading', async () => {
 })
 
 it('switches the language', async () => {
-  server.use(loggedIn(), emptyDashboard())
+  server.use(loggedIn(), ...emptyDashboard())
   const { user } = renderApp('/')
   await user.click(await screen.findByRole('button', { name: 'Español' }))
   expect(await screen.findByRole('heading', { name: 'Panel' })).toBeInTheDocument()

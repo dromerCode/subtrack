@@ -7,6 +7,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { fieldErrorsOf } from '@/lib/api'
+import { categoryColor } from '@/lib/categoryColor'
 import type { LookupKind } from '@/lib/queryKeys'
 import type { Lookup } from '@/lib/types'
 import { useLookupMutations, useLookups } from './lookups'
@@ -36,7 +37,7 @@ export function LookupList({ kind, title, deleteDescription }: LookupListProps) 
       <Card>
         <CardHeader>
           <CardTitle>
-            <h2 id={headingId} className="text-lg font-semibold">
+            <h2 id={headingId} className="text-base font-semibold">
               {title}
             </h2>
           </CardTitle>
@@ -120,6 +121,9 @@ function LookupRow({ kind, item, deleteDescription }: { kind: LookupKind; item: 
 
   return (
     <li className="flex items-center gap-2 py-2">
+      {kind === 'categories' && (
+        <span aria-hidden="true" className="size-2.5 shrink-0 rounded-full" style={{ background: categoryColor(item.id) }} />
+      )}
       <span className="flex-1">{item.name}</span>
       <Button type="button" size="sm" variant="ghost" onClick={() => setEditing(true)}>
         {t('settings.rename')}

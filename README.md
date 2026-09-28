@@ -14,10 +14,12 @@ Self-hosted web app to keep track of your subscriptions: how much you spend per 
 - Shared subscriptions: enter the total price and how many people share it — totals only count your part.
 - Dashboard with monthly and yearly spend, charges due in the next 30 days and spend by category.
 - Editable categories and payment methods.
-- English and Spanish interface.
+- English and Spanish interface, light and dark themes (follows the system, with a toggle).
 - Single account, session login, runs as one Docker image next to PostgreSQL.
 
 ![Subscriptions](docs/screenshots/subscriptions.png)
+
+![Dashboard in dark mode](docs/screenshots/dashboard-dark.png)
 
 ## Stack
 

@@ -24,3 +24,9 @@ export function renderApp(path = '/') {
 
 export const loggedIn = () => http.get('/api/auth/me', () => HttpResponse.json({ username: 'picha' }))
 export const loggedOut = () => http.get('/api/auth/me', () => new HttpResponse(null, { status: 401 }))
+
+/** The dashboard's two requests answered with no data. */
+export const emptyDashboard = () => [
+  http.get('/api/dashboard', () => HttpResponse.json({ monthlyTotal: 0, yearlyTotal: 0, upcoming: [], byCategory: [] })),
+  http.get('/api/subscriptions', () => HttpResponse.json([])),
+]

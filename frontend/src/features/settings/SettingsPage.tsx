@@ -1,12 +1,13 @@
 import { useTranslation } from 'react-i18next'
+import { PageHeader } from '@/components/PageHeader'
 import { LookupList } from './LookupList'
 
 export function SettingsPage() {
   const { t } = useTranslation()
   return (
-    <div className="space-y-6">
-      <h1 className="text-2xl font-semibold">{t('settings.title')}</h1>
-      <div className="grid gap-6 md:grid-cols-2">
+    <div className="space-y-8">
+      <PageHeader title={t('settings.title')} />
+      <div className="grid items-start gap-6 md:grid-cols-2">
         <LookupList
           kind="categories"
           title={t('settings.categories')}

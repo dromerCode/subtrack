@@ -4,7 +4,9 @@
     "subscriptions": "Subscriptions",
     "settings": "Settings",
     "logout": "Log out",
-    "switchLanguage": "Español"
+    "switchLanguage": "Español",
+    "darkMode": "Switch to dark mode",
+    "lightMode": "Switch to light mode"
   },
   "login": {
     "title": "Sign in",
@@ -15,14 +17,17 @@
   },
   "dashboard": {
     "title": "Dashboard",
-    "monthly": "Monthly spend",
-    "yearly": "Yearly spend",
     "upcoming": "Upcoming charges (30 days)",
     "noUpcoming": "No charges in the next 30 days",
     "byCategory": "Monthly spend by category",
     "uncategorized": "Uncategorized",
     "empty": "No active subscriptions yet",
-    "addFirst": "Add the first one"
+    "addFirst": "Add the first one",
+    "perMonth": "per month",
+    "perYear": "per year",
+    "activeCount_one": "{{count}} active subscription",
+    "activeCount_other": "{{count}} active subscriptions",
+    "nextCharge": "Next charge"
   },
   "subscriptions": {
     "title": "Subscriptions",
@@ -55,7 +60,10 @@
     "notes": "Notes",
     "active": "Active",
     "deleteTitle": "Delete this subscription?",
-    "deleteBody": "This cannot be undone."
+    "deleteBody": "This cannot be undone.",
+    "groupCost": "Cost",
+    "groupBilling": "Billing",
+    "groupDetails": "Details"
   },
   "units": {
     "DAY": "days",
