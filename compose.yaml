@@ -1,0 +1,36 @@
+services:
+  app:
+    build: .
+    image: subtrack
+    restart: unless-stopped
+    ports:
+      - "8080:8080"
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://db:5432/subtrack
+      SPRING_DATASOURCE_USERNAME: subtrack
+      SPRING_DATASOURCE_PASSWORD: ${DB_PASSWORD:?set DB_PASSWORD in .env}
+      SUBTRACK_USERNAME: ${SUBTRACK_USERNAME:?set SUBTRACK_USERNAME in .env}
+      SUBTRACK_PASSWORD_HASH: ${SUBTRACK_PASSWORD_HASH:?set SUBTRACK_PASSWORD_HASH in .env}
+      # "today" for next-charge dates is the server's date in this zone
+      JAVA_TOOL_OPTIONS: -Duser.timezone=${TZ:-Europe/Madrid}
+    depends_on:
+      db:
+        condition: service_healthy
+
+  db:
+    image: postgres:18-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: subtrack
+      POSTGRES_USER: subtrack
+      POSTGRES_PASSWORD: ${DB_PASSWORD:?set DB_PASSWORD in .env}
+    volumes:
+      - db-data:/var/lib/postgresql
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U subtrack -d subtrack"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+
+volumes:
+  db-data:
