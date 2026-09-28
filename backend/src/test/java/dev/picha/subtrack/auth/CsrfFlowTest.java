@@ -14,7 +14,8 @@ import org.springframework.test.web.servlet.MockMvc;
 
 /**
  * The real browser flow: read XSRF-TOKEN from a response, send it back as X-XSRF-TOKEN.
- * Needs a fresh context: spring-security-test's csrf() swaps the token repository of the shared one.
+ * Needs a fresh context: spring-security-test's csrf() swaps the token repository of the shared one
+ * (for a session-backed one, which would also hide sessions created by the app).
  */
 @IntegrationTest
 @DirtiesContext(classMode = DirtiesContext.ClassMode.BEFORE_CLASS)
@@ -37,5 +38,13 @@ class CsrfFlowTest {
         mvc.perform(post("/api/auth/login").cookie(xsrf)
                 .param("username", "test").param("password", "secret"))
             .andExpect(status().isForbidden());
+    }
+
+    @Test
+    void rejectedAnonymousRequestsDoNotCreateASession() throws Exception {
+        var request = mvc.perform(get("/api/subscriptions"))
+            .andExpect(status().isUnauthorized())
+            .andReturn().getRequest();
+        assertThat(request.getSession(false)).isNull();
     }
 }

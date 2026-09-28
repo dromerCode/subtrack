@@ -29,6 +29,8 @@ class SecurityConfig {
                 .requestMatchers("/api/**").authenticated()
                 .anyRequest().permitAll())
             .csrf(csrf -> csrf.spa())
+            // nothing ever replays a rejected request, so don't open a session just to save it
+            .requestCache(cache -> cache.disable())
             .addFilterAfter(new CsrfCookieFilter(), BasicAuthenticationFilter.class)
             .formLogin(form -> form
                 // "/login" is the SPA's route; declaring it stops Spring from generating its own login page there.

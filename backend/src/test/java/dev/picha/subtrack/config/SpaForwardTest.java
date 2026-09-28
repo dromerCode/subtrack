@@ -25,6 +25,18 @@ class SpaForwardTest {
     }
 
     @Test
+    void unknownPathsWithoutAFileExtensionAlsoServeTheSpa() throws Exception {
+        for (String path : new String[] { "/nope", "/typo/42", "/settings/a/b" }) {
+            mvc.perform(get(path)).andExpect(status().isOk()).andExpect(forwardedUrl("/index.html"));
+        }
+    }
+
+    @Test
+    void missingStaticFilesAreNotForwarded() throws Exception {
+        mvc.perform(get("/assets/missing.js")).andExpect(forwardedUrl(null));
+    }
+
+    @Test
     void unknownApiRoutesAreNotForwarded() throws Exception {
         mvc.perform(apiGet("/api/nope")).andExpect(status().isNotFound());
     }
