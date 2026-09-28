@@ -8,6 +8,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.webmvc.test.autoconfigure.AutoConfigureMockMvc;
 import org.springframework.context.annotation.Import;
 import org.springframework.test.context.ActiveProfiles;
+import org.springframework.test.context.jdbc.Sql;
 
 /** Full application context against a real Postgres, with MockMvc and "today" fixed to 2026-01-15. */
 @Target(ElementType.TYPE)
@@ -16,5 +17,6 @@ import org.springframework.test.context.ActiveProfiles;
 @AutoConfigureMockMvc
 @ActiveProfiles("test")
 @Import({ TestcontainersConfiguration.class, TestClockConfiguration.class })
+@Sql(statements = "TRUNCATE subscription, category, payment_method RESTART IDENTITY CASCADE")
 public @interface IntegrationTest {
 }
