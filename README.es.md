@@ -67,3 +67,7 @@ Todo va bajo `/api` y necesita sesión, salvo el login.
 | `GET` | `/api/dashboard` | totales, próximos cobros y gasto por categoría |
 
 Las peticiones que modifican datos llevan la cabecera `X-XSRF-TOKEN` con el valor de la cookie `XSRF-TOKEN`. Los errores siguen [RFC 9457](https://www.rfc-editor.org/rfc/rfc9457) (Problem Details), con los errores de campo en `errors: [{field, code}]`.
+
+## Licencia
+
+[GPL-3.0](LICENSE)

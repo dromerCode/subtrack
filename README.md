@@ -67,3 +67,7 @@ All endpoints are under `/api` and need a session, except login.
 | `GET` | `/api/dashboard` | totals, upcoming charges, spend by category |
 
 Write requests need the `X-XSRF-TOKEN` header with the value of the `XSRF-TOKEN` cookie. Errors are [RFC 9457](https://www.rfc-editor.org/rfc/rfc9457) problem details with field errors in `errors: [{field, code}]`.
+
+## License
+
+[GPL-3.0](LICENSE)
