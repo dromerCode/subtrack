@@ -38,4 +38,13 @@ public final class ApiRequests {
     public static long idOf(MvcResult result) throws UnsupportedEncodingException {
         return ((Number) JsonPath.read(result.getResponse().getContentAsString(), "$.id")).longValue();
     }
+
+    /** Body for POST/PUT /api/subscriptions; {@code categoryId} may be null. */
+    public static String subscriptionJson(String name, String price, int intervalCount, String intervalUnit,
+            String anchorDate, int sharedWith, Long categoryId, boolean active) {
+        return """
+            {"name": "%s", "price": %s, "intervalCount": %d, "intervalUnit": "%s", "anchorDate": "%s",
+             "sharedWith": %d, "categoryId": %s, "paymentMethodId": null, "notes": null, "active": %s}
+            """.formatted(name, price, intervalCount, intervalUnit, anchorDate, sharedWith, categoryId, active);
+    }
 }
