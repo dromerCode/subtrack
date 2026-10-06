@@ -1,6 +1,6 @@
 # subtrack
 
-[![CI](https://github.com/pichaDev/subtrack/actions/workflows/ci.yml/badge.svg)](https://github.com/pichaDev/subtrack/actions/workflows/ci.yml)
+[![CI](https://github.com/dromerCode/subtrack/actions/workflows/ci.yml/badge.svg)](https://github.com/dromerCode/subtrack/actions/workflows/ci.yml)
 
 *[Read in English](README.md)*
 
